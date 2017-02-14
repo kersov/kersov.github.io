@@ -15,6 +15,34 @@
   "homepage": "https://bitbucket.org/AlexO29/personal-site#readme",
   "dependencies": {
     "gulp": "^3.9.1",
-    "gulp-file-include": "^1.0.0"
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-compass": "^2.1.0",
+    "gulp-file-include": "^1.0.0",
+    "gulp-sass": "^3.1.0",
+    "sassdoc": "^2.1.20"
+  },
+  "paths": {
+    "base": "./",
+    "sass": {
+      "input": "./sass/",
+      "inputName": "sass",
+      "output": "./stylesheets/",
+      "temp": "./.temp/sass/"
+    }
+  },
+  "settings": {
+    "sass": {
+      "inputFiles": "./sass/*.scss",
+      "tempFiles": "./.temp/sass/*.css"
+    },
+    "sassdoc": {
+      "dest": "./sassdoc"
+    },
+    "bake": {
+      "inputFiles": "./views/index.html"
+    }
+  },
+  "devDependencies": {
+    "gulp-watch": "^4.3.11"
   }
 }
