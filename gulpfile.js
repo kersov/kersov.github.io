@@ -3,43 +3,34 @@ var gulp = require('gulp');
 var fileinclude = require('gulp-file-include');
 var autoprefixer = require('gulp-autoprefixer');
 var compass = require('gulp-compass');
-var sassdoc = require('sassdoc');
-var config = require('./package');
+var pack = require('./package');
 var watch = require('gulp-watch');
+var runSequence = require('run-sequence');
 
 /* BAKE ***********************************************************************/
 gulp.task('bake', function() {
-  gulp.src([config.settings.bake.inputFiles])
+  gulp.src([pack.config.bake.inputFiles])
     .pipe(fileinclude({
       prefix: '@@',
       basepath: '@file'
     }))
-    .pipe(gulp.dest(config.paths.base));
+    .pipe(gulp.dest(pack.paths.base));
 });
 
 gulp.task('bake-watch', function () {
-  return watch(config.paths.sass.input, { ignoreInitial: false }, function () {
+  return watch(pack.paths.sass.input, { ignoreInitial: false }, function () {
     gulp.start('bake');
   });
-});
-/******************************************************************************/
-
-/* SASSDOC ********************************************************************/
-gulp.task('sassdoc', function () {
-  return gulp
-    .src(config.paths.sass.input)
-    .pipe(sassdoc(config.settings.sassdoc))
-    .resume();
 });
 /******************************************************************************/
 
 /* SASS ***********************************************************************/
 gulp.task('compass', function () {
   return gulp
-    .src(config.settings.sass.inputFiles)
+    .src(pack.config.sass.inputFiles)
     .pipe(compass({
-      sass: config.paths.sass.input,
-      css: config.paths.sass.temp,
+      sass: pack.paths.sass.input,
+      css: pack.paths.sass.temp,
       logging  : false,
       comments : false,
       style    : 'expanded'
@@ -48,20 +39,22 @@ gulp.task('compass', function () {
 
 gulp.task('sass', ['compass'], function () {
   return gulp
-    .src(config.settings.sass.tempFiles)
+    .src(pack.config.sass.tempFiles)
     .pipe(autoprefixer())
-    .pipe(gulp.dest(config.paths.sass.output));
+    .pipe(gulp.dest(pack.paths.sass.output));
 });
 
 gulp.task('sass-watch', function () {
-  return watch(config.paths.sass.input, { ignoreInitial: false }, function () {
-    gulp.start('sass');
+  return watch(pack.paths.sass.input, { ignoreInitial: false }, function () {
+    runSequence('sass', 'bake');
   });
 });
 /******************************************************************************/
 
 gulp.task('watch', ['sass-watch', 'bake-watch']);
 
-gulp.task('build', ['sass', 'bake']);
+gulp.task('build', function () {
+  runSequence('sass', 'bake');
+});
 
 gulp.task('default', ['watch']);

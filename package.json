@@ -1,26 +1,22 @@
 {
   "name": "personal-site",
-  "version": "0.0.1",
   "description": "Alex Kersov personal site",
-  "main": "gulp.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://AlexO29@bitbucket.org/AlexO29/personal-site.git"
-  },
+  "version": "0.0.1",
   "author": "Alex Kersov",
-  "license": "ISC",
-  "homepage": "https://bitbucket.org/AlexO29/personal-site#readme",
   "dependencies": {
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-compass": "^2.1.0",
     "gulp-file-include": "^1.0.0",
     "gulp-sass": "^3.1.0",
-    "sassdoc": "^2.1.20"
+    "run-sequence": "^1.2.2"
   },
+  "devDependencies": {
+    "gulp-watch": "^4.3.11"
+  },
+  "homepage": "https://bitbucket.org/AlexO29/personal-site#readme",
+  "license": "ISC",
+  "main": "gulp.js",
   "paths": {
     "base": "./",
     "sass": {
@@ -30,19 +26,21 @@
       "temp": "./.temp/sass/"
     }
   },
-  "settings": {
+  "repository": {
+    "type": "git",
+    "url": "git+https://AlexO29@bitbucket.org/AlexO29/personal-site.git"
+  },
+  "scripts": {
+    "build": "gulp build",
+    "postinstall": "npm build"
+  },
+  "config": {
     "sass": {
       "inputFiles": "./sass/*.scss",
       "tempFiles": "./.temp/sass/*.css"
     },
-    "sassdoc": {
-      "dest": "./sassdoc"
-    },
     "bake": {
       "inputFiles": "./views/index.html"
     }
-  },
-  "devDependencies": {
-    "gulp-watch": "^4.3.11"
   }
 }

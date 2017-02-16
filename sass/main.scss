@@ -1,9 +1,27 @@
 @import "compass";
 
-body {
-  background-color: #1e5799; // Old browsers
-  @include filter-gradient(#1e5799, #7db9e8, vertical); // IE6-8
+/* General variables */
+$color-snow: #fffafa;
+
+/* Specific variables */
+$color-text: $color-snow;
+
+/* Components */
+.component-main-bg {
+  // Needs latest Compass, add '@import "compass"' to your scss
+  // Permalink - use to edit and share this gradient:
+  // http://colorzilla.com/gradient-editor/#1d3c51+0,383155+100
+  background-color: #1d3c51; // Old browsers
+  @include filter-gradient(#1d3c51, #383155, vertical); // IE6-8
   // IE9 SVG, needs conditional override of 'filter' to 'none'
   $experimental-support-for-svg: true;
-  @include background-image(linear-gradient(top,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%));
+  @include background-image(linear-gradient(top,  #1d3c51 0%,#383155 100%));
+}
+
+/* Styles */
+
+body {
+  @extend .component-main-bg;
+  height: 100vh;
+  color: $color-text;
 }
