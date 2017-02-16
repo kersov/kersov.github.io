@@ -6,9 +6,11 @@
   "dependencies": {
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean-css": "^3.0.2",
     "gulp-compass": "^2.1.0",
     "gulp-file-include": "^1.0.0",
     "gulp-sass": "^3.1.0",
+    "normalize.scss": "^0.1.0",
     "run-sequence": "^1.2.2"
   },
   "devDependencies": {
@@ -41,6 +43,9 @@
     },
     "bake": {
       "inputFiles": "./views/index.html"
+    },
+    "cleanCss": {
+      "compatibility": "ie7"
     }
   }
 }

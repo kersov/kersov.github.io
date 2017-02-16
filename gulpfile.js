@@ -6,6 +6,7 @@ var compass = require('gulp-compass');
 var pack = require('./package');
 var watch = require('gulp-watch');
 var runSequence = require('run-sequence');
+var cleanCSS = require('gulp-clean-css');
 
 /* BAKE ***********************************************************************/
 gulp.task('bake', function() {
@@ -41,6 +42,7 @@ gulp.task('sass', ['compass'], function () {
   return gulp
     .src(pack.config.sass.tempFiles)
     .pipe(autoprefixer())
+    .pipe(cleanCSS(pack.config.cleanCSS))
     .pipe(gulp.dest(pack.paths.sass.output));
 });
 

@@ -1,7 +1,11 @@
 @import "compass";
+@import "../node_modules/normalize.scss/normalize.scss";
 
 /* General variables */
 $color-snow: #fffafa;
+
+$height-header: 100px;
+$height-footer: 100px;
 
 /* Specific variables */
 $color-text: $color-snow;
@@ -19,9 +23,42 @@ $color-text: $color-snow;
 }
 
 /* Styles */
+/* GENERAL ********************************************************************/
+html {
+  height: 100%;
+}
 
 body {
   @extend .component-main-bg;
-  height: 100vh;
+  height: 100%;
   color: $color-text;
 }
+
+.page-wrap {
+  min-height: 100%;
+  margin-bottom: -$height-footer;
+  &:after {
+    content: "";
+    display: block;
+    height: $height-footer;
+  }
+}
+/******************************************************************************/
+
+/* HEADER *********************************************************************/
+.header {
+
+}
+/******************************************************************************/
+
+/* MAIN ***********************************************************************/
+.main {
+
+}
+/******************************************************************************/
+
+/* FOOTER *********************************************************************/
+.footer {
+  height: $height-footer;
+}
+/******************************************************************************/
