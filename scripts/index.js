@@ -20,18 +20,31 @@
     		: Math.floor(Math.random() * (max - min + 1)) + min
     }
 
-    for(var i=0; i<random(1000, 5000); i++){
-    	particles.push({
-    		x: random(-300, canvas.width + 300),
-    		y: random(-300, canvas.height + 300),
-    		s: random(1, 3)
-    	})
+    function pushParticles () {
+      for(var i=0; i<random(1000, 5000); i++){
+      	particles.push({
+      		x: random(-300, canvas.width + 300),
+      		y: random(-300, canvas.height + 300),
+      		s: random(1, 3)
+      	})
+      }
     }
+    pushParticles();
 
-    document.addEventListener('mousemove', function(e){
+    document.addEventListener('mousemove', function(e) {
     	mouse.x = e.clientX;
     	mouse.y = e.clientY;
+    });
+
+    document.addEventListener('touchmove', function(e) {
+      try {
+        mouse.x = e.touches[0].clientX;
+      	mouse.y = e.touches[0].clientY;
+      } catch(error) {
+        console.error(error);
+      }
     })
+
 
     function render(){
     	ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -65,5 +78,13 @@
     	render();
     })();
   }
+
+  window.addEventListener('resize', function(event){
+    canvas.width = window.innerWidth * (window.devicePixelRatio || 1);
+    canvas.height = window.innerHeight * (window.devicePixelRatio || 1);
+    particles.length = 0;
+    pushParticles();
+    render();
+  });
 
 })();

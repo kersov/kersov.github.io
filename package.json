@@ -10,7 +10,9 @@
     "gulp-clean-css": "^3.0.2",
     "gulp-compass": "^2.1.0",
     "gulp-file-include": "^1.0.0",
+    "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^2.0.1",
     "normalize.scss": "^0.1.0",
     "run-sequence": "^1.2.2"
   },
@@ -27,6 +29,9 @@
       "inputName": "sass",
       "output": "./stylesheets/",
       "temp": "./.temp/sass/"
+    },
+    "js": {
+      "output": "./scripts/"
     }
   },
   "repository": {
@@ -47,6 +52,13 @@
     },
     "cleanCss": {
       "compatibility": "ie7"
+    },
+    "js": {
+      "inputFiles": "./scripts/index.js",
+      "options": {
+        "compress": "true",
+        "mangle": "true"
+      }
     }
   }
 }

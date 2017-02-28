@@ -17,6 +17,8 @@ $padding-bottom: $padding-main;
 $padding-left: $padding-main;
 
 $height-header: 50px;
+$header-margin-bottom: 50px;
+$height-outer-header: $height-header + $header-margin-bottom;
 $height-footer: 100px;
 $height-outer-footer: $height-footer + $padding-bottom;
 

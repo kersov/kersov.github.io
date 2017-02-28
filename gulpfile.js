@@ -7,6 +7,8 @@ var pack = require('./package');
 var watch = require('gulp-watch');
 var runSequence = require('run-sequence');
 var cleanCSS = require('gulp-clean-css');
+var uglify = require('gulp-uglify');
+var rename = require('gulp-rename');
 
 /* BAKE ***********************************************************************/
 gulp.task('bake', function() {
@@ -53,10 +55,30 @@ gulp.task('sass-watch', function () {
 });
 /******************************************************************************/
 
-gulp.task('watch', ['sass-watch', 'bake-watch']);
+/* JS *************************************************************************/
+gulp.task('uglify-js', function (cb) {
+  return gulp
+    .src(pack.config.js.inputFiles)
+    .pipe(uglify())
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(gulp.dest(pack.paths.js.output));
+
+});
+
+gulp.task('js-watch', function () {
+  return watch(pack.config.js.inputFiles, { ignoreInitial: false }, function () {
+    runSequence('uglify-js', 'bake');
+  });
+});
+/******************************************************************************/
+
+/* GENERAL ********************************************************************/
+
+gulp.task('watch', ['sass-watch', 'bake-watch', 'js-watch']);
 
 gulp.task('build', function () {
-  runSequence('sass', 'bake');
+  runSequence('sass', 'uglify-js', 'bake');
 });
 
 gulp.task('default', ['watch']);
+/******************************************************************************/
