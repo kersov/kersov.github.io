@@ -1,5 +1,10 @@
 @import "compass";
 @import "../node_modules/normalize.scss/normalize.scss";
+@import "../node_modules/animatewithsass/_properties.scss";
+@import "../node_modules/animatewithsass/_bouncing-entrances/_bounceInDown.scss";
+@import "../node_modules/animatewithsass/_fading-entrances/_fadeInLeft.scss";
+@import "../node_modules/animatewithsass/_fading-entrances/_fadeInRight.scss";
+
 
 /* General variables */
 $color-snow: #fffafa;
@@ -87,6 +92,15 @@ body {
     height: $height-outer-footer;
   }
 }
+
+.fadeInLeft {
+  @include fadeInLeft();
+}
+
+.fadeInRight {
+  @include fadeInRight();
+}
+
 /******************************************************************************/
 
 /* HEADER *********************************************************************/
@@ -103,6 +117,13 @@ body {
   white-space: nowrap;
   position: relative;
   overflow: hidden;
+  @include bounceInDown(
+    $duration: 1s,
+    $count: $countDefault,
+    $delay: 0s,
+    $function: $functionDefault,
+    $fill: $fillDefault
+  );
   &:hover {
     & .header__icon-border:before {
       min-height: 0px;
@@ -175,7 +196,28 @@ body {
 
 /* MAIN ***********************************************************************/
 .main {
-
+  .main__heading {
+    animation-duration: 0.5s;
+    animation-delay: 0s;
+  }
+  .main__paragraph {
+    &_first {
+      animation-duration: 0.5s;
+      animation-delay: 0.1s;
+    }
+    &_second {
+      animation-duration: 0.5s;
+      animation-delay: 0.2s;
+    }
+    &_third {
+      animation-duration: 0.5s;
+      animation-delay: 0.3s;
+    }
+    &_fourth {
+      animation-duration: 0.5s;
+      animation-delay: 0.4s;
+    }
+  }
 }
 /******************************************************************************/
 

@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "author": "Alex Kersov",
   "dependencies": {
+    "animatewithsass": "git+https://github.com/geoffgraham/animate.scss.git",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-clean-css": "^3.0.2",
