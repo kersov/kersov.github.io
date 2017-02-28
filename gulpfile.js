@@ -19,7 +19,7 @@ gulp.task('bake', function() {
 });
 
 gulp.task('bake-watch', function () {
-  return watch(pack.paths.sass.input, { ignoreInitial: false }, function () {
+  return watch(pack.config.bake.inputFiles, { ignoreInitial: false }, function () {
     gulp.start('bake');
   });
 });
