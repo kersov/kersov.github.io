@@ -21,7 +21,7 @@ gulp.task('bake', function() {
 });
 
 gulp.task('bake-watch', function () {
-  return watch(pack.config.bake.inputFiles, { ignoreInitial: false }, function () {
+  return watch(pack.config.bake.inputFiles, { ignoreInitial: true }, function () {
     gulp.start('bake');
   });
 });
@@ -49,7 +49,7 @@ gulp.task('sass', ['compass'], function () {
 });
 
 gulp.task('sass-watch', function () {
-  return watch(pack.paths.sass.input, { ignoreInitial: false }, function () {
+  return watch(pack.paths.sass.input, { ignoreInitial: true }, function () {
     runSequence('sass', 'bake');
   });
 });
@@ -66,7 +66,7 @@ gulp.task('uglify-js', function (cb) {
 });
 
 gulp.task('js-watch', function () {
-  return watch(pack.config.js.inputFiles, { ignoreInitial: false }, function () {
+  return watch(pack.config.js.inputFiles, { ignoreInitial: true }, function () {
     runSequence('uglify-js', 'bake');
   });
 });
@@ -80,5 +80,7 @@ gulp.task('build', function () {
   runSequence('sass', 'uglify-js', 'bake');
 });
 
-gulp.task('default', ['watch']);
+gulp.task('default', function () {
+  runSequence('build', 'watch');
+});
 /******************************************************************************/

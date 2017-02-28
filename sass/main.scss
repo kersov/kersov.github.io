@@ -13,13 +13,13 @@ $color-sky-blue: #7ec0ee;
 $padding-main: 20px;
 $padding-top: $padding-main;
 $padding-right: $padding-main;
-$padding-bottom: $padding-main;
+$padding-bottom: 10px;
 $padding-left: $padding-main;
 
 $height-header: 50px;
 $header-margin-bottom: 50px;
 $height-outer-header: $height-header + $header-margin-bottom;
-$height-footer: 100px;
+$height-footer: 20px;
 $height-outer-footer: $height-footer + $padding-bottom;
 
 /* Specific variables */
