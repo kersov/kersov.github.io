@@ -1,0 +1,88 @@
+.header {
+  height: $height-header;
+  padding-top: $padding-top;
+}
+
+.header__icon {
+  $border-width: 5px;
+  height: $height-header + $border-width + $border-width;
+  display: block;
+  font-size: 42px;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  @include bounceInDown(
+    $duration: 1s,
+    $count: $countDefault,
+    $delay: 0s,
+    $function: $functionDefault,
+    $fill: $fillDefault
+  );
+  &:hover {
+    & .header__icon-border:before {
+      min-height: 0px;
+      transition-delay: 0s;
+    }
+    & .header__icon-border:after {
+      min-height: 0px;
+      transition-delay: 0s;
+    }
+    & .header__icon-text {
+      left: 12px;
+      transition-delay: 0.5s;
+    }
+    & .header__icon-main-text {
+      margin-right: -20px;
+      transition-delay: 0.5s;
+    }
+  }
+  &-text {
+    line-height: $height-header + $border-width + $border-width;
+    display: inline-block;
+    position: absolute;
+    width: 250px;
+    left: -217px;
+    transition: left 1s ease-in 0s;
+    will-change: left;
+  }
+  &-main-text {
+    transition: margin-right 1s linear 0s;
+  }
+  &-symbol {
+    margin-left: 20px;
+  }
+  .header__icon-border {
+    $border-width: 5px;
+    display: inline-block;
+    height: $height-header;
+    width: $height-header;
+    font-size: 42px;
+    position: absolute;
+    border: $border-width $color-snow solid;
+    border-right: 0 transparent;
+    &:before {
+      content: "";
+      display: inline-block;
+      min-height: 50%;
+      width: $border-width;
+      background-color: $color-snow;
+      position: absolute;
+      right: 0px;
+      bottom: 0px;
+      transition: min-height 1s ease-in 0.5s;
+      will-change: min-height;
+    }
+    &:after {
+      content: "";
+      display: inline-block;
+      min-height: 50%;
+      width: $border-width;
+      background-color: $color-snow;
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      transition: min-height 1s ease-in 0.5s;
+      will-change: min-height;
+    }
+  }
+}

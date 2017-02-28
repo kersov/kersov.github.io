@@ -1,0 +1,61 @@
+html {
+  height: 100%;
+  @extend .component-main-bg;
+}
+
+body {
+  height: 100%;
+  color: $color-text;
+  padding: 0 $padding-right 0 $padding-left;
+}
+
+.text-link {
+  $border-bottom-width: 2px;
+  color: $color-link;
+  position: relative;
+  text-decoration: none;
+  border-bottom: $border-bottom-width solid $color-link;
+  transition: color 0.5s;
+  &:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    max-width: 0;
+    border-bottom: $border-bottom-width solid $color-link-hover;
+    color: $color-link-hover;
+    content: attr(data-hover);
+    transition: max-width 0.5s;
+    height: 100%;
+    will-change: max-width;
+  }
+  &:hover {
+    color: $color-link-hover;
+    border-bottom: $border-bottom-width solid $color-link-hover;
+    &:before {
+      max-width: 100%;
+    }
+  }
+  &:focus {
+    outline: 2px groove $color-link;
+    outline-offset: 2px;
+  }
+}
+
+.page-wrap {
+  min-height: 100%;
+  margin-bottom: -$height-outer-footer;
+  &:after {
+    content: "";
+    display: block;
+    height: $height-outer-footer;
+  }
+}
+
+.fadeInLeft {
+  @include fadeInLeft();
+}
+
+.fadeInRight {
+  @include fadeInRight();
+}
