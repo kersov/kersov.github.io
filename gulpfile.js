@@ -10,6 +10,11 @@ var cleanCSS = require('gulp-clean-css');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var svg2png = require('gulp-svg2png');
+var buffer = require('vinyl-buffer');
+var csso = require('gulp-csso');
+var imagemin = require('gulp-imagemin');
+var merge = require('merge-stream');
+var spritesmith = require('gulp.spritesmith');
 
 /* BAKE ***********************************************************************/
 gulp.task('bake', function() {
@@ -78,6 +83,29 @@ gulp.task('icons2png', function () {
     return gulp.src(pack.config.icons.inputFiles)
       .pipe(svg2png(pack.config.icons.options))
       .pipe(gulp.dest(pack.paths.icons.output));
+});
+
+gulp.task('sprite', function () {
+  // Generate our spritesheet
+  var spriteData = gulp.src(pack.config.sprite.inputFiles).pipe(spritesmith({
+    imgName: pack.config.sprite.imgName,
+    cssName: pack.config.sprite.cssName
+  }));
+
+  // Pipe image stream through image optimizer and onto disk
+  var imgStream = spriteData.img
+    // DEV: We must buffer our stream into a Buffer for `imagemin`
+    .pipe(buffer())
+    .pipe(imagemin())
+    .pipe(gulp.dest(pack.config.sprite.imgOutputDir));
+
+  // Pipe CSS stream through CSS optimizer and onto disk
+  var cssStream = spriteData.css
+    .pipe(csso())
+    .pipe(gulp.dest(pack.config.sprite.cssOutputDir));
+
+  // Return a merged stream to handle both `end` events
+  return merge(imgStream, cssStream);
 });
 /******************************************************************************/
 

@@ -9,14 +9,19 @@
     "gulp-autoprefixer": "^3.1.1",
     "gulp-clean-css": "^3.0.2",
     "gulp-compass": "^2.1.0",
+    "gulp-csso": "^2.0.0",
     "gulp-file-include": "^1.0.0",
+    "gulp-imagemin": "^3.1.1",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "gulp-svg2png": "^2.0.2",
     "gulp-uglify": "^2.0.1",
+    "gulp.spritesmith": "^6.3.0",
+    "merge-stream": "^1.0.1",
     "normalize.scss": "^0.1.0",
     "run-sequence": "^1.2.2",
-    "svg2png": "3.0.0"
+    "svg2png": "3.0.0",
+    "vinyl-buffer": "^1.0.0"
   },
   "devDependencies": {
     "gulp-watch": "^4.3.11"
@@ -71,6 +76,13 @@
         "width": "25",
         "height": "25"
       }
+    },
+    "sprite": {
+      "inputFiles": "./.temp/icons/*.png",
+      "imgName": "icons.png",
+      "cssName": "icons.css",
+      "imgOutputDir": "./img/sprite/",
+      "cssOutputDir": "./sass/sprite/"
     }
   }
 }

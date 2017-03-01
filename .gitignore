@@ -3,3 +3,5 @@ node_modules
 stylesheets
 .temp
 index.html
+img/sprite
+sass/sprite
