@@ -9,14 +9,32 @@
   &_type_github {
     background-color: $color-github;
     background-position: 13px 13px;
+    @include media-breakpoint-down(xs) {
+      height: 25px;
+      width: 25px;
+      background-position: 0px 0px;
+      margin-top: 25px;
+    }
   }
   &_type_twitter {
     background-color: $color-twitter;
       background-position: 13px -37px;
+      @include media-breakpoint-down(xs) {
+        height: 25px;
+        width: 25px;
+        background-position: 0px -50px;
+        margin-top: 25px;
+      }
   }
   &_type_linkedin {
     background-color: $color-linkedin;
     background-position: -37px 13px;
+    @include media-breakpoint-down(xs) {
+      height: 25px;
+      width: 25px;
+      background-position: -50px 0px;
+      margin-top: 25px;
+    }
   }
   &_type_social {
     background-image: url(img/sprite/icons.png);
@@ -25,6 +43,10 @@
     transition: all 0.5s ease;
     &:hover {
       transform: rotate(360deg);
+      border-radius: 100%;
+    }
+    &:active {
+      transform: rotate(360deg) scale(1.2);
       border-radius: 100%;
     }
   }

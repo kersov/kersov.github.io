@@ -82,6 +82,8 @@ body {
 
 .creator {
   display: inline-block;
+  position: absolute;
+  bottom: $padding-bottom;
 }
 
 .margin-left {
