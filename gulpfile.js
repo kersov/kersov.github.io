@@ -89,7 +89,8 @@ gulp.task('sprite', function () {
   // Generate our spritesheet
   var spriteData = gulp.src(pack.config.sprite.inputFiles).pipe(spritesmith({
     imgName: pack.config.sprite.imgName,
-    cssName: pack.config.sprite.cssName
+    cssName: pack.config.sprite.cssName,
+    padding: 25
   }));
 
   // Pipe image stream through image optimizer and onto disk
@@ -102,10 +103,15 @@ gulp.task('sprite', function () {
   // Pipe CSS stream through CSS optimizer and onto disk
   var cssStream = spriteData.css
     .pipe(csso())
+    .pipe(rename({ extname: '.scss' }))
     .pipe(gulp.dest(pack.config.sprite.cssOutputDir));
 
   // Return a merged stream to handle both `end` events
   return merge(imgStream, cssStream);
+});
+
+gulp.task('img', function () {
+  runSequence('icons2png', 'sprite');
 });
 /******************************************************************************/
 
@@ -114,7 +120,7 @@ gulp.task('sprite', function () {
 gulp.task('watch', ['sass-watch', 'bake-watch', 'js-watch']);
 
 gulp.task('build', function () {
-  runSequence('sass', 'uglify-js', 'bake');
+  runSequence('img', 'sass', 'uglify-js', 'bake');
 });
 
 gulp.task('default', function () {

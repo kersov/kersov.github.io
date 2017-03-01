@@ -1,0 +1,31 @@
+//@import "../sprite/icons.scss";
+
+.icon {
+  display: inline-block;
+  &_size_medium {
+    height: 50px;
+    width: 50px;
+  }
+  &_type_github {
+    background-color: $color-github;
+    background-position: 13px 13px;
+  }
+  &_type_twitter {
+    background-color: $color-twitter;
+      background-position: 13px -37px;
+  }
+  &_type_linkedin {
+    background-color: $color-linkedin;
+    background-position: -37px 13px;
+  }
+  &_type_social {
+    background-image: url(img/sprite/icons.png);
+    background-repeat: no-repeat;
+    box-shadow: 0px 0px 1px 0px rgba(255,255,255,0.75);
+    transition: all 0.5s ease;
+    &:hover {
+      transform: rotate(360deg);
+      border-radius: 100%;
+    }
+  }
+}

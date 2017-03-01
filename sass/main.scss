@@ -9,6 +9,7 @@
 /* General variables */
 $color-snow: #fffafa;
 $color-sky-blue: #7ec0ee;
+$color-black: #000000;
 
 $padding-main: 20px;
 $padding-top: $padding-main;
@@ -19,13 +20,16 @@ $padding-left: $padding-main;
 $height-header: 50px;
 $header-margin-bottom: 50px;
 $height-outer-header: $height-header + $header-margin-bottom;
-$height-footer: 20px;
+$height-footer: 50px;
 $height-outer-footer: $height-footer + $padding-bottom;
 
 /* Specific variables */
 $color-text: $color-snow;
 $color-link: $color-sky-blue;
 $color-link-hover: #BFDDF4;
+$color-github: #24292e;
+$color-twitter: #1DA1F2;
+$color-linkedin  : #0077b5;
 
 /* Components */
 .component-main-bg {
@@ -54,4 +58,8 @@ $color-link-hover: #BFDDF4;
 
 /* FOOTER *********************************************************************/
 @import "./blocks/footer.scss";
+/******************************************************************************/
+
+/* COMPONENTS *****************************************************************/
+@import "./components/icons.scss";
 /******************************************************************************/
