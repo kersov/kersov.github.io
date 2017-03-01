@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 var gulp = require('gulp');
 var fileinclude = require('gulp-file-include');
 var autoprefixer = require('gulp-autoprefixer');
@@ -9,6 +9,7 @@ var runSequence = require('run-sequence');
 var cleanCSS = require('gulp-clean-css');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
+var svg2png = require('gulp-svg2png');
 
 /* BAKE ***********************************************************************/
 gulp.task('bake', function() {
@@ -69,6 +70,14 @@ gulp.task('js-watch', function () {
   return watch(pack.config.js.inputFiles, { ignoreInitial: true }, function () {
     runSequence('uglify-js', 'bake');
   });
+});
+/******************************************************************************/
+
+/* IMAGES *********************************************************************/
+gulp.task('icons2png', function () {
+    return gulp.src(pack.config.icons.inputFiles)
+      .pipe(svg2png(pack.config.icons.options))
+      .pipe(gulp.dest(pack.paths.icons.output));
 });
 /******************************************************************************/
 

@@ -12,9 +12,11 @@
     "gulp-file-include": "^1.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
+    "gulp-svg2png": "^2.0.2",
     "gulp-uglify": "^2.0.1",
     "normalize.scss": "^0.1.0",
-    "run-sequence": "^1.2.2"
+    "run-sequence": "^1.2.2",
+    "svg2png": "3.0.0"
   },
   "devDependencies": {
     "gulp-watch": "^4.3.11"
@@ -32,6 +34,9 @@
     },
     "js": {
       "output": "./scripts/"
+    },
+    "icons": {
+      "output": "./.temp/icons/"
     }
   },
   "repository": {
@@ -58,6 +63,13 @@
       "options": {
         "compress": "true",
         "mangle": "true"
+      }
+    },
+    "icons": {
+      "inputFiles": "./img/icons/*.svg",
+      "options": {
+        "width": "25",
+        "height": "25"
       }
     }
   }
