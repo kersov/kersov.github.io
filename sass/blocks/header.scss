@@ -45,6 +45,7 @@
     left: -217px;
     transition: left 1s ease-in 0s;
     will-change: left;
+    user-select: none;
   }
   &-main-text {
     transition: margin-right 1s linear 0s;
