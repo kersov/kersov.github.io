@@ -85,7 +85,7 @@
       "inputFiles": "./.temp/icons/*.png",
       "imgName": "icons.png",
       "cssName": "icons.css",
-      "imgOutputDir": "./img/sprite/",
+      "imgOutputDir": "./",
       "cssOutputDir": "./sass/sprite/"
     }
   }
