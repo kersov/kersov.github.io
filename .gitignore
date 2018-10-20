@@ -2,6 +2,5 @@ node_modules
 .sass-cache
 stylesheets
 .temp
-index.html
 img/sprite
 sass/sprite
