@@ -15,6 +15,7 @@ var csso = require('gulp-csso');
 var imagemin = require('gulp-imagemin');
 var merge = require('merge-stream');
 var spritesmith = require('gulp.spritesmith');
+var htmlmin = require('gulp-htmlmin');
 
 /* BAKE ***********************************************************************/
 gulp.task('bake', function() {
@@ -23,12 +24,12 @@ gulp.task('bake', function() {
       prefix: '@@',
       basepath: '@file'
     }))
-    .pipe(gulp.dest(pack.paths.base));
+    .pipe(gulp.dest(pack.paths.html.temp));
 });
 
 gulp.task('bake-watch', function () {
-  return watch(pack.config.bake.inputFiles, { ignoreInitial: true }, function () {
-    gulp.start('bake');
+  return watch(pack.config.bake.inputFiles, {ignoreInitial: true}, function () {
+    runSequence('bake', 'htmlmin');
   });
 });
 /******************************************************************************/
@@ -40,9 +41,9 @@ gulp.task('compass', function () {
     .pipe(compass({
       sass: pack.paths.sass.input,
       css: pack.paths.sass.temp,
-      logging  : false,
-      comments : false,
-      style    : 'expanded'
+      logging: false,
+      comments: false,
+      style: 'expanded'
     }))
 });
 
@@ -115,12 +116,20 @@ gulp.task('img', function () {
 });
 /******************************************************************************/
 
+/* HTMLMIN ********************************************************************/
+gulp.task('htmlmin', function() {
+  return gulp.src(pack.paths.html.temp + 'index.html')
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest(pack.paths.base));
+});
+/******************************************************************************/
+
 /* GENERAL ********************************************************************/
 
 gulp.task('watch', ['sass-watch', 'bake-watch', 'js-watch']);
 
 gulp.task('build', function () {
-  runSequence('img', 'sass', 'uglify-js', 'bake');
+  runSequence('img', 'sass', 'uglify-js', 'bake', 'htmlmin');
 });
 
 gulp.task('default', function () {
