@@ -20,11 +20,13 @@
     "gulp-svg2png": "^2.0.2",
     "gulp-uglify": "^2.0.1",
     "gulp.spritesmith": "^6.3.0",
+    "hoek": "^5.0.4",
     "lodash": "^4.17.11",
     "merge-stream": "^1.0.1",
     "minimatch": "^3.0.4",
     "normalize.scss": "^0.1.0",
     "run-sequence": "^1.2.2",
+    "static-eval": "^2.0.0",
     "svg2png": "3.0.0",
     "vinyl-buffer": "^1.0.0"
   },
