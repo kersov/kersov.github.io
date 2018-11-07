@@ -31,7 +31,10 @@
     "vinyl-buffer": "^1.0.0"
   },
   "devDependencies": {
-    "gulp-watch": "^4.3.11"
+    "gulp-watch": "^4.3.11",
+    "stylelint": "^9.7.1",
+    "stylelint-config-rational-order": "0.0.2",
+    "stylelint-scss": "^3.3.2"
   },
   "homepage": "https://bitbucket.org/AlexO29/personal-site#readme",
   "license": "ISC",
@@ -60,7 +63,8 @@
   },
   "scripts": {
     "build": "gulp build",
-    "postinstall": "npm build"
+    "postinstall": "npm build",
+    "stylelint": "stylelint sass/**/*.scss --fix"
   },
   "config": {
     "sass": {
