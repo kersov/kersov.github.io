@@ -16,10 +16,11 @@ var imagemin = require('gulp-imagemin');
 var merge = require('merge-stream');
 var spritesmith = require('gulp.spritesmith');
 var htmlmin = require('gulp-htmlmin');
+var clean = require('gulp-clean');
 
 /* BAKE ***********************************************************************/
 gulp.task('bake', function() {
-  gulp.src([pack.config.bake.inputFiles])
+  return gulp.src([pack.config.bake.inputFiles])
     .pipe(fileinclude({
       prefix: '@@',
       basepath: '@file'
@@ -124,12 +125,21 @@ gulp.task('htmlmin', function() {
 });
 /******************************************************************************/
 
+/* REMOVE BUILD FILES *********************************************************/
+gulp.task('clean', function() {
+  gulp.src('.temp', {read: false})
+    .pipe(clean());
+  return gulp.src('./index.html', {read: false})
+    .pipe(clean());
+});
+/******************************************************************************/
+
 /* GENERAL ********************************************************************/
 
 gulp.task('watch', ['sass-watch', 'bake-watch', 'js-watch']);
 
 gulp.task('build', function () {
-  runSequence('img', 'sass', 'uglify-js', 'bake', 'htmlmin');
+  runSequence('clean', 'img', 'sass', 'uglify-js', 'bake', 'htmlmin');
 });
 
 gulp.task('default', function () {

@@ -4,3 +4,4 @@ stylesheets
 .temp
 img/sprite
 sass/sprite
+scripts/*.min.js
